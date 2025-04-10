@@ -8,29 +8,27 @@ import hello.itemservice.repository.ItemUpdateDto;
 import hello.itemservice.repository.memory.MemoryItemRepository;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.DefaultTransactionDefinition;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 @SpringBootTest
 class ItemRepositoryTest {
 
   @Autowired
   ItemRepository itemRepository;
 
-  @Autowired
-  PlatformTransactionManager transactionManager;
-  TransactionStatus status;
+  // @Autowired
+  // PlatformTransactionManager transactionManager;
+  // TransactionStatus status;
 
-  @BeforeEach
-  void beforeEach() {
-    // start transaction
-    status = transactionManager.getTransaction(new DefaultTransactionDefinition());
-  }
+  // @BeforeEach
+  // void beforeEach() {
+  //   // start transaction
+  //   status = transactionManager.getTransaction(new DefaultTransactionDefinition());
+  // }
 
   @AfterEach
   void afterEach() {
@@ -40,7 +38,7 @@ class ItemRepositoryTest {
     }
 
     // rollback transaction
-    transactionManager.rollback(status);
+    // transactionManager.rollback(status);
   }
 
   @Test
